@@ -4,10 +4,22 @@ import { Video } from "./types";
 export function VideoCard({video}: {video: Video}){
      
     return <div className="sm:w-full p-2"  id={video.id.toString()}>
-        <img 
-        src={video.image} 
-        className="rounded-xl">
-        </img>
+
+    <div className="relative">
+        
+        
+        
+        <div className="realtive"></div>
+        
+            <div className="absolute bottom-1.5 right-1.5 bg-black rounded-sm">
+                <h6 className="text-white text-xs font-medium ">{video.duration}</h6>
+            </div>
+            <img src={video.image} 
+                className="rounded-xl" >
+            </img>
+        </div>
+        
+        
 
         <div className="grid grid-cols-12 pt-2">
             
