@@ -1,7 +1,7 @@
 
 import { Inter } from 'next/font/google'
 import {VideosGrid} from '@/components/VideosGrid';
-import Layout from "@/components/layout"
+import Layout from "@/components/Layout"
 
 const inter = Inter({ subsets: ['latin'] })
 
