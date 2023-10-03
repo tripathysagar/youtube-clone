@@ -1,8 +1,9 @@
 import { useRecoilState } from "recoil";
-
+import Image from 'next/image';
 import {SearchBar} from "./SearchBar";
 import {hamburgButton} from "../stores/atoms/HamburgButton";
 
+import ytIcon from "../../public/ytIcon.png";
 
 export function AppBar(){
 
@@ -23,7 +24,7 @@ export function AppBar(){
             </svg>
 
             <div className=" flex">
-                <img src="ytIcon.png" className="h-7 w-10" />
+                <Image src={ytIcon} className="h-7 w-10" alt="youtube"/>
 
                 <p className="   font-sans text-justify w-10 hidden sm:block pt-0.5">YouTube</p>
 
