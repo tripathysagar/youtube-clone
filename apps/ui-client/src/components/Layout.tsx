@@ -14,10 +14,15 @@ export default function Layout({ children }: {
     <RecoilRoot>
       <div >
         <AppBar />
-        <div className="flex">
+        <div className="flex place-self-center " >
+          <div className="basis-1/12">
           <LeftBar />
-          
+          </div>
+          <div className="basis-full">
           <main>{children}</main>
+          </div>
+          
+         
         </div>
       </div>
   </RecoilRoot>
