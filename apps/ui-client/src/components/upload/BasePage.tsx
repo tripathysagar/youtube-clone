@@ -2,18 +2,21 @@
 import { useState } from "react";
 import Image from 'next/image';
 import axios from 'axios';
+import { Error } from  '../Error';
 
 export  function BasePage(){
 
     const [image, setImage] = useState<File | null>(null);
     const [video, setVideo] = useState<File | null>(null);
     const [title, setTitle] = useState("");
-  
+    const [imageSizeCheck, setImageSizeCheck] = useState<boolean | null>(null);
+    const [videoSizeCheck, setVideoSizeCheck] = useState<boolean | null>(null);
+    
 
   return (
     
     
-    <div className="     w-max pt-10 container bg-green-800 ">
+    <div className="w-max pt-10 container bg-green-800 ">
     
     <div className=" w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 space-y-6" >
       
@@ -22,7 +25,7 @@ export  function BasePage(){
 
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pr-5" htmlFor="file_input">Thumnail:</label>
           <input 
-          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           name="image" 
           accept="image/*" 
           type="file" 
@@ -30,6 +33,8 @@ export  function BasePage(){
               if (e.target.files && e.target.files[0]) {
                   const file = e.target.files[0];
                   setImage(file);
+                  setImageSizeCheck(calculateSize(file, 2));
+
               }}}
           />
 
@@ -58,6 +63,7 @@ export  function BasePage(){
               if (e.target.files && e.target.files[0]) {
                   const file = e.target.files[0];
                   setVideo(file);
+                  setVideoSizeCheck(calculateSize(file, 5));
               }}}
           />
           
@@ -115,8 +121,10 @@ export  function BasePage(){
       </button>
 
     </div>
-      
-
+    
+    { imageSizeCheck === false && <Error message="Please upload image of size 2Mb"/>}
+    { videoSizeCheck === false && <Error message="Please upload video of size 5Mb"/>}
+    
     </div>
     
     
@@ -124,6 +132,12 @@ export  function BasePage(){
   );
 }
 
-function calculateSize(file : File){
-    return file.size / 1024 <= 5 ? true : false;
+function calculateSize(file : File, size: number){
+
+    console.log(file.size / (1024*1024));
+    return file.size / (1024*1024) <= size ? true : false;
 }
+
+
+
+
